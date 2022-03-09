@@ -28,3 +28,9 @@ public class SpringBatchApplication {
  * 
  */
 
+
+/*
+ *  step execution          - when the step started, completed etc
+ *  step execution context  - step level - within step if u want to pass some info - then use step execution context 
+ *  
+*/
