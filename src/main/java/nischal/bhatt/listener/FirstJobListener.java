@@ -12,6 +12,9 @@ public class FirstJobListener implements JobExecutionListener {
 		System.out.println("before job" + jobExecution.getJobInstance().getJobName());
 		System.out.println("before job" + jobExecution.getJobParameters());		
 		System.out.println("before job" + jobExecution.getExecutionContext());	
+		
+		
+		jobExecution.getExecutionContext().put("key1", "value1");
 	}
 
 	@Override
