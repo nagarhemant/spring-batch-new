@@ -34,3 +34,11 @@ public class SpringBatchApplication {
  *  step execution context  - step level - within step if u want to pass some info - then use step execution context 
  *  
 */
+
+/*
+ * use job params to inform spring batch that our job is unique
+ * run configs --> pass arguments --> here can pass the job params 
+ * in key value pairs
+ * run=one
+ * 
+ */
