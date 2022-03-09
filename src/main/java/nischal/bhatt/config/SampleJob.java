@@ -15,7 +15,10 @@ import org.springframework.context.annotation.Configuration;
 
 import nischal.bhatt.listener.FirstJobListener;
 import nischal.bhatt.listener.FirstStepListener;
+import nischal.bhatt.processor.FirstItemProcessor;
+import nischal.bhatt.reader.FirstItemReader;
 import nischal.bhatt.service.SecondTasklet;
+import nischal.bhatt.writer.FirstItemWriter;
 
 @Configuration
 public class SampleJob {
@@ -35,7 +38,16 @@ public class SampleJob {
 	@Autowired
 	private FirstStepListener firstStepListener;
 	
-	@Bean
+	@Autowired
+	private FirstItemReader firstItemReader;
+	
+	@Autowired
+	private FirstItemProcessor firstItemProcessor;
+	
+	@Autowired
+	private FirstItemWriter firstItemWriter;
+	
+	//@Bean
 	public Job firstJob()
 	{
 		return this.jobBuilderFactory.get("firstJob")
@@ -77,7 +89,21 @@ public class SampleJob {
 				};
 	}
 	
+	@Bean
+	public Job secondJob() {
+		return jobBuilderFactory.get("second-job")
+				.incrementer(new RunIdIncrementer())
+				.start(firstChunkStep())
+				.build();
+	}
 	
-	
+	public Step firstChunkStep() {
+		return stepBuilderFactory.get("First-check-step")
+				.<Integer,Long>chunk(3)
+				.reader(firstItemReader)
+				.processor(firstItemProcessor)
+				.writer(firstItemWriter)
+				.build();
+	}
 
 }

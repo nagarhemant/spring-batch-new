@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableBatchProcessing
-@ComponentScan({"nischal.bhatt.config","nischal.bhatt.service","nischal.bhatt.listener"})
+@ComponentScan({"nischal.bhatt.config","nischal.bhatt.service","nischal.bhatt.listener","nischal.bhatt.reader","nischal.bhatt.writer","nischal.bhatt.processor"})
 public class SpringBatchApplication {
 
 	public static void main(String[] args) {
