@@ -18,40 +18,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import nischal.bhatt.service.JobService;
+
 @RestController
 @RequestMapping("/api/job")
 public class JobController {
 
 	@Autowired
-	JobLauncher jobLauncher;
-	
-	@Qualifier("firstJob")
-	@Autowired
-	Job firstJob;
-	
-	
-	@Qualifier("secondJob")
-	@Autowired
-	Job secondJob;
+	JobService jobService;
 	
 	 @GetMapping("/start/{jobName}")
-	 public String startJob(@PathVariable String jobName) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException
+	 public String startJob(@PathVariable String jobName) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, InterruptedException
 	 {
+		 jobService.startJob(jobName);
 		 
-		 Map<String, JobParameter> params 
-		 = new HashMap<>();
-		 params.put("currentTime", new JobParameter(System.currentTimeMillis()));
-		 
-		 JobParameters jobParameters = new JobParameters(params);
-		 
-		 
-		 if (jobName.equals("second-job"))
-		 {
-		 this.jobLauncher.run(secondJob, jobParameters);
-		 }else if (jobName.equals("first-job"))
-		 {
-			 this.jobLauncher.run(firstJob, jobParameters);
-		 }
 		 return "Job Started";
 		 		
 	 }
