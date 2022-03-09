@@ -24,6 +24,7 @@ public class FirstItemReader implements ItemReader<Integer>{
 			i++;
 			return item;
 		}
+		i=0;
 		return null;
 		
 		
