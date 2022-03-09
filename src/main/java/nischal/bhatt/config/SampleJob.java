@@ -90,7 +90,7 @@ public class SampleJob {
 	}
 	
 	@Bean
-	public Job secondaryJob() {
+	public Job secondJob() {
 		return jobBuilderFactory.get("second-job")
 				.incrementer(new RunIdIncrementer())
 				.start(firstChunkStep())

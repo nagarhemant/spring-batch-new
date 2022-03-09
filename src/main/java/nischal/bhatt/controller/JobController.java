@@ -30,7 +30,7 @@ public class JobController {
 	Job firstJob;
 	
 	
-	@Qualifier("secondaryJob")
+	@Qualifier("secondJob")
 	@Autowired
 	Job secondJob;
 	
