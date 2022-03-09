@@ -13,6 +13,8 @@ public class FirstStepListener implements StepExecutionListener{
 		System.out.println("before step " + stepExecution.getStepName());
 		System.out.println(stepExecution.getJobExecution().getExecutionContext());
 		System.out.println(stepExecution.getExecutionContext());
+		
+		stepExecution.getExecutionContext().put("sec", "sec value");
 	}
 
 	@Override
