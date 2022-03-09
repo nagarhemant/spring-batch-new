@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import nischal.bhatt.listener.FirstJobListener;
 import nischal.bhatt.service.SecondTasklet;
 
 @Configuration
@@ -27,6 +28,9 @@ public class SampleJob {
 	@Autowired
 	private SecondTasklet secondTasklet;
 
+	@Autowired
+	private FirstJobListener firstJobListener;
+	
 	@Bean
 	public Job firstJob()
 	{
@@ -34,6 +38,7 @@ public class SampleJob {
 		.incrementer(new RunIdIncrementer())		
 		.start(firstStep())
 		.next(secondStep())
+		.listener(firstJobListener)
 		.build();
 	}
 
