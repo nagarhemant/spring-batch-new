@@ -94,6 +94,7 @@ public class SampleJob {
 		return jobBuilderFactory.get("second-job")
 				.incrementer(new RunIdIncrementer())
 				.start(firstChunkStep())
+				.next(secondStep())
 				.build();
 	}
 	
