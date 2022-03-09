@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import nischal.bhatt.listener.FirstJobListener;
+import nischal.bhatt.listener.FirstStepListener;
 import nischal.bhatt.service.SecondTasklet;
 
 @Configuration
@@ -31,6 +32,9 @@ public class SampleJob {
 	@Autowired
 	private FirstJobListener firstJobListener;
 	
+	@Autowired
+	private FirstStepListener firstStepListener;
+	
 	@Bean
 	public Job firstJob()
 	{
@@ -46,6 +50,7 @@ public class SampleJob {
 	{
 		return this.stepBuilderFactory.get("first-step")
 		.tasklet(firstTask())
+		.listener(firstStepListener)
 		.build();
 	}
 	
