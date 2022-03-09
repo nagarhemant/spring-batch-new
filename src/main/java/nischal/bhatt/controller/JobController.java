@@ -1,6 +1,7 @@
 package nischal.bhatt.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.batch.core.Job;
@@ -15,9 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import nischal.bhatt.request.JobParamsRequest;
 import nischal.bhatt.service.JobService;
 
 @RestController
@@ -28,9 +31,9 @@ public class JobController {
 	JobService jobService;
 	
 	 @GetMapping("/start/{jobName}")
-	 public String startJob(@PathVariable String jobName) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, InterruptedException
+	 public String startJob(@PathVariable String jobName, @RequestBody List<JobParamsRequest> jobParamsRequestList) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, InterruptedException
 	 {
-		 jobService.startJob(jobName);
+		 jobService.startJob(jobName, jobParamsRequestList);
 		 
 		 return "Job Started";
 		 		
