@@ -70,6 +70,7 @@ public class SampleJob {
 					public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
 							throws Exception {
 						System.out.println("this is first tasklet step");
+						System.out.println("SEC = "+chunkContext.getStepContext().getStepExecutionContext());
 						return RepeatStatus.FINISHED;
 					}
 			
