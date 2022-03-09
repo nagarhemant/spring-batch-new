@@ -15,3 +15,16 @@ public class SpringBatchApplication {
 	}
 
 }
+/*
+ * Job - job instance (1 march job run is 1 job instance)
+ *     - job execution - what time this instance started, what time ended 
+ *     - if job execution completed successfully --> then job instance cannot restart
+ *     - if job execution failed --> then u can restart 
+ *     - spring batch knows stuff because of metadata in the database 
+ *     - job instance is unique 
+ *     - job execution context --> stored information in key-value form that all steps can access 
+ *     - steps can pass info from step to step via job execution context 
+ *     - 
+ * 
+ */
+
