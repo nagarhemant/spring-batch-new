@@ -47,7 +47,7 @@ public class SampleJob {
 	@Autowired
 	private FirstItemWriter firstItemWriter;
 	
-	//@Bean
+	@Bean
 	public Job firstJob()
 	{
 		return this.jobBuilderFactory.get("firstJob")
