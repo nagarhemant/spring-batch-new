@@ -81,6 +81,7 @@ public class SampleJob {
 					@Override
 					public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
 							throws Exception {
+						Thread.sleep(20000);
 						System.out.println("this is first tasklet step");
 						System.out.println("SEC = "+chunkContext.getStepContext().getStepExecutionContext());
 						return RepeatStatus.FINISHED;
@@ -94,12 +95,19 @@ public class SampleJob {
 		return jobBuilderFactory.get("second-job")
 				.incrementer(new RunIdIncrementer())
 				.start(firstChunkStep())
-				.next(secondStep())
-				.next(firstStep())
+				//.next(secondStep())
+				//.next(firstStep())
 				.build();
 	}
 	
 	public Step firstChunkStep() {
+		System.out.println("in here");
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return stepBuilderFactory.get("First-check-step")
 				.<Integer,Long>chunk(3)
 				.reader(firstItemReader)
