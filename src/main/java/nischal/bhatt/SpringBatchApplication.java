@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableBatchProcessing
 @ComponentScan({"nischal.bhatt.config","nischal.bhatt.service","nischal.bhatt.listener","nischal.bhatt.reader","nischal.bhatt.writer","nischal.bhatt.processor","nischal.bhatt.controller"})
 @EnableAsync
-//@EnableScheduling
+@EnableScheduling
 public class SpringBatchApplication {
 
 	public static void main(String[] args) {
