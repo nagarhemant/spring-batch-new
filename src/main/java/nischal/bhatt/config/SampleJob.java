@@ -102,12 +102,7 @@ public class SampleJob {
 	
 	public Step firstChunkStep() {
 		System.out.println("in here");
-		try {
-			Thread.sleep(20000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		return stepBuilderFactory.get("First-check-step")
 				.<Integer,Long>chunk(3)
 				.reader(firstItemReader)
